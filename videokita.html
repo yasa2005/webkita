@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Kita 🎥💞</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .transition-scale {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .video-small {
+      width: 300px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .video-medium {
+      width: 480px;
+      height: auto;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center justify-center p-6 text-gray-800">
+
+  <h1 class="text-3xl sm:text-4xl font-bold mb-6 text-center">Kenangan Video Kita 🎬</h1>
+
+  <div id="frameVideo" class="rounded-xl overflow-hidden shadow-lg border border-pink-300 transition-scale">
+    <video 
+      id="videoKita" 
+      class="transition-scale video-small"
+      autoplay 
+      muted 
+      loop 
+      playsinline
+    >
+      <source src="videokita1.mp4" type="video/mp4" />
+      Maaf, browser kamu tidak mendukung video HTML5.
+    </video>
+  </div>
+
+  <p class="mt-4 text-sm text-gray-600">💖 Dibuat spesial untuk kamu yang selalu ada di hati 💖</p>
+
+  <script>
+    const video = document.getElementById('videoKita');
+
+    video.addEventListener('click', () => {
+      video.classList.toggle('video-small');
+      video.classList.toggle('video-medium');
+
+      if (video.classList.contains('video-medium')) {
+        video.muted = false;
+        video.controls = true;
+        video.loop = false;
+        video.play();
+      } else {
+        video.muted = true;
+        video.controls = false;
+        video.loop = true;
+        video.play();
+      }
+    });
+  </script>
+
+</body>
+</html>
