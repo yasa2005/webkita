@@ -3,76 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wishlist Tempat Impian ✨</title>
+  <title>Wishlist Tempat Kita 💕</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-br from-yellow-100 to-pink-200 min-h-screen p-6 text-gray-800">
-  
-  <a href="web.html#section-wishlist" class="mb-6 inline-block text-pink-600 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">← Kembali</a>
+<body class="bg-pink-50 min-h-screen text-gray-800">
 
-  <h1 class="text-3xl sm:text-4xl font-bold text-center text-pink-700 mb-6">Tempat yang Mau Kita Datengin 🌍💑</h1>
+  <!-- Tombol Kembali -->
+  <a href="web.html#section-wishlist" class="mb-6 self-start ml-4 text-pink-600 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">
+    ← Kembali
+  </a>
 
-  <div id="wishlistContainer" class="space-y-4 max-w-2xl mx-auto mb-10"></div>
+  <!-- Container -->
+  <div class="max-w-xl mx-auto py-10 px-4">
+    <h1 class="text-3xl font-bold mb-6 text-pink-600 text-center">
+      Tempat yang Mau Kita Kunjungi 🗺️
+    </h1>
 
-  <!-- Tambah Tempat -->
-  <div class="max-w-2xl mx-auto mb-10 flex gap-2">
-    <input type="text" id="tempatBaru" placeholder="Contoh: Kyoto Jepang 🗾" class="flex-1 p-2 rounded-lg border border-gray-300" />
-    <button onclick="tambahTempat()" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg">Tambah</button>
+    <!-- Input dan Tombol Tambah -->
+    <div class="flex mb-4">
+      <input id="wishlistInput" type="text" placeholder="Tambah tempat impian..."
+        class="flex-1 px-4 py-2 rounded-l-lg border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+      <button onclick="addWishlist()" 
+        class="bg-pink-500 text-white px-4 py-2 rounded-r-lg hover:bg-pink-600">
+        Tambah
+      </button>
+    </div>
+
+    <!-- Daftar Wishlist -->
+    <ul id="wishlistItems" class="space-y-2"></ul>
   </div>
 
-  <script>
-    let daftarTempat = JSON.parse(localStorage.getItem('wishlist')) || [];
+  <!-- Firebase + Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-    function renderTempat() {
-      const container = document.getElementById('wishlistContainer');
-      container.innerHTML = '';
+    // Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCSqV05L8AA_hv5YOlSdvfmbgfJBKdykgs",
+      authDomain: "ilyasa21.firebaseapp.com",
+      databaseURL: "https://ilyasa21-default-rtdb.firebaseio.com",
+      projectId: "ilyasa21",
+      storageBucket: "ilyasa21.appspot.com",
+      messagingSenderId: "2903513667",
+      appId: "1:2903513667:web:231dfd4868499de08bd2f6",
+      measurementId: "G-R9YN2806EZ"
+    };
 
-      if (daftarTempat.length === 0) {
-        container.innerHTML = '<p class="text-center text-gray-500">Belum ada tempat nih... yuk isi dulu 💭</p>';
-        return;
+    // Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const wishlistRef = ref(db, 'wishlist');
+
+    const input = document.getElementById('wishlistInput');
+    const list = document.getElementById('wishlistItems');
+
+    // Tambah data wishlist ke database
+    function addWishlist() {
+      const tempat = input.value.trim();
+      if (tempat !== '') {
+        push(wishlistRef, { tempat });
+        input.value = '';
       }
+    }
 
-      daftarTempat.forEach((tempat, index) => {
-        const div = document.createElement('div');
-        div.className = 'bg-white p-4 rounded-xl shadow flex justify-between items-center';
+    // Menampilkan data wishlist secara realtime
+    onValue(wishlistRef, (snapshot) => {
+      list.innerHTML = '';
+      snapshot.forEach((childSnapshot) => {
+        const data = childSnapshot.val();
+        const key = childSnapshot.key;
 
-        div.innerHTML = `
-          <span class="text-lg">${tempat}</span>
-          <button onclick="selesaikanTempat(${index})" class="bg-green-500 text-white px-3 py-1 rounded-md text-sm hover:bg-green-600 transition">Selesai ✅</button>
+        const li = document.createElement('li');
+        li.className = 'flex justify-between items-center bg-white p-3 rounded shadow';
+
+        li.innerHTML = `
+          <span>${data.tempat}</span>
+          <button onclick="selesaikan('${key}', '${data.tempat}')" class="text-sm bg-green-400 text-white px-3 py-1 rounded hover:bg-green-500">
+            Selesai
+          </button>
         `;
 
-        container.appendChild(div);
+        list.appendChild(li);
       });
+    });
+
+    // Fungsi untuk memindahkan ke halaman misi dan hapus dari wishlist
+    window.selesaikan = function(key, tempat) {
+      const selesaiRef = ref(db, 'mission');
+      push(selesaiRef, { tempat });
+      remove(ref(db, 'wishlist/' + key));
     }
-
-    function tambahTempat() {
-      const input = document.getElementById('tempatBaru');
-      const tempat = input.value.trim();
-      if (tempat === '') return;
-
-      daftarTempat.push(tempat);
-      localStorage.setItem('wishlist', JSON.stringify(daftarTempat));
-      input.value = '';
-      renderTempat();
-    }
-
-    function selesaikanTempat(index) {
-      const tempat = daftarTempat.splice(index, 1)[0];
-
-      // Simpan ke mission
-      let mission = JSON.parse(localStorage.getItem('mission')) || [];
-      mission.push(tempat);
-      localStorage.setItem('mission', JSON.stringify(mission));
-
-      // Update wishlist
-      localStorage.setItem('wishlist', JSON.stringify(daftarTempat));
-      renderTempat();
-
-      // Pindah ke mission.html
-      window.location.href = 'mission.html';
-    }
-
-    renderTempat();
   </script>
+
 </body>
 </html>
