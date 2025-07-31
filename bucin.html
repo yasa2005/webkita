@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Bucin Ina & Wendi - Kisah Cinta Kita 💕</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Website bucin romantis tentang Ina dan Wendi. Berisi kisah cinta, wishlist, dan kenangan kami berdua." />
+  <meta name="keywords" content="web bucin, bucin html, website cinta, ina dan wendi, kisah cinta, bucin couple" />
+  <meta name="author" content="Ina & Wendi" />
 
+  <!-- Tailwind & AOS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    html, body {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes love-float {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(-20px); opacity: 0.8; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .animate-love-float {
+      animation: love-float 5s ease-in-out infinite;
+    }
+
+    .animate-love-float-delay {
+      animation: love-float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden font-sans">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 bg-white/30 backdrop-blur shadow-md border-b border-white/20">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-center flex-wrap gap-4 text-sm font-medium text-gray-800">
+      <a href="#section-beranda" class="hover:text-black transition duration-300">Beranda</a>
+      <a href="#section-foto" class="hover:text-black transition duration-300">Foto</a>
+      <a href="#section-video" class="hover:text-black transition duration-300">Video</a>
+      <a href="#section-wishlist" class="hover:text-black transition duration-300">Wishlist</a>
+      <a href="#section-mission" class="hover:text-black transition duration-300">Mission</a>
+    </div>
+  </nav>
+
+  <!-- Section Beranda -->
+  <section id="section-beranda" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 bg-gradient-to-br from-indigo-700 via-purple-600 to-pink-500 text-white pt-24 sm:pt-32">
+    <div class="relative z-10" data-aos="fade-up">
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight mb-6 drop-shadow-lg font-serif">Beranda</h1>
+      <div class="space-y-4 max-w-xl text-base sm:text-lg italic font-light leading-relaxed">
+        <p>“Dari ‘Aku Kamu’ Jadi ‘Kita’ 💑”</p>
+        <p>Sekarang bukan cuma chat doang yang punya history, tapi kita juga 📜✨</p>
+        <p>“Kisah Kita, Simpan di Sini Aja 💾❤️”</p>
+        <p>Ga perlu cloud, cukup satu folder namanya <span class="font-semibold">CintaKita/</span> ☁️💘</p>
+        <p>“Bukan cuma memori di kepala, tapi juga di HTML dan CSS.”<br><span class="text-sm">Biar pas dibuka, cintanya auto-responsive 😍💻</span></p>
+        <p>“Website-nya mungkin kecil, tapi cintanya gede.”<br><span class="text-sm">Scroll terus, kamu bakal nemuin banyak easter egg rasa sayang 🐣💓</span></p>
+      </div>
+      <div class="mt-8">
+        <a href="#section-wishlist" class="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded-full transition backdrop-blur-md shadow-md hover:scale-105 duration-300 inline-block text-sm sm:text-base">
+          Tentang Kita
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Foto -->
+  <section id="section-foto" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-32 pb-20 text-white bg-gradient-to-br from-pink-200 via-pink-400 to-rose-400">
+    <div class="relative z-10 max-w-2xl space-y-6" data-aos="fade-up">
+      <h2 class="text-4xl sm:text-5xl font-bold drop-shadow-xl tracking-wider font-serif" data-aos="fade-down" data-aos-delay="100">
+        Foto Kita
+      </h2>
+      <p class="text-base sm:text-lg font-light italic leading-relaxed text-white/90 drop-shadow-md" data-aos="fade-up" data-aos-delay="400">
+        "Bukan sekadar foto, ini cerita kita.<br>
+        Satu foto, sejuta rasa.<br>
+        Gak perlu filter, kamu udah cukup bikin indah 😘<br>
+        Biar dunia tahu, kami pernah sebucin ini 😚❤️"
+      </p>
+      <a href="#" class="bg-gradient-to-r from-pink-400 via-pink-500 to-rose-500 px-6 py-3 rounded-full hover:from-pink-500 hover:to-rose-600 transition shadow-xl text-base inline-block" data-aos="zoom-in" data-aos-delay="600">
+        💞 Yuk Lihat Foto Kita Sayang 💞
+      </a>
+    </div>
+  </section>
+
+  <!-- Section Video -->
+  <section id="section-video" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-32 pb-20 bg-gradient-to-br from-purple-300 via-purple-600 to-gray-900 text-white">
+    <div class="relative z-10 max-w-2xl space-y-6" data-aos="fade-up">
+      <h2 class="text-4xl sm:text-5xl font-bold drop-shadow-md tracking-wider font-serif" data-aos="fade-down" data-aos-delay="100">
+        Video Kita
+      </h2>
+      <p class="text-base sm:text-lg font-light italic leading-relaxed text-white/90 drop-shadow-sm" data-aos="fade-up" data-aos-delay="300">
+        "Tenang aja, ini bukan sinetron — ini kisah aku dan kamu, edisi bucin level dewa. <br>
+        Scroll terus, nanti kamu paham kenapa aku segila ini sama kamu. <br>
+        Soalnya tiap bareng kamu, waktu ngebut... tapi giliran LDR, rindu ngerangkak kayak siput lagi ngantuk 🐌💤."
+      </p>
+      <a href="#" class="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-full transition backdrop-blur-md shadow-md hover:scale-105 duration-300 inline-block text-base font-medium" data-aos="zoom-in" data-aos-delay="500">
+        🎥 Yuk Kepoin Video Kita 💜
+      </a>
+    </div>
+  </section>
+
+  <!-- Section Wishlist -->
+  <section id="section-wishlist" class="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-32 pb-20 text-gray-900 bg-gradient-to-br from-rose-100 via-pink-200 to-fuchsia-300" data-aos="fade-up">
+    <h2 class="text-4xl sm:text-5xl font-bold drop-shadow-sm mb-4 tracking-wide" data-aos="fade-down" data-aos-delay="100">
+      Wishlist Kita
+    </h2>
+    <p class="text-base sm:text-lg italic font-light max-w-xl mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="300">
+      Wishlist ini akan terus bertambah… selama kita terus bersama 🤭
+    </p>
+    <a href="#" class="bg-gradient-to-r from-fuchsia-500 via-pink-500 to-rose-500 hover:from-pink-600 hover:to-fuchsia-600 text-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300 text-base" data-aos="zoom-in" data-aos-delay="500">
+      Kemana Lagi yah Kita, Sayang? 💗🌈
+    </a>
+  </section>
+
+  <!-- Section Mission -->
+  <section id="section-mission" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-32 pb-24 text-gray-900 bg-gradient-to-br from-emerald-100 via-green-200 to-lime-100" data-aos="fade-up">
+    <div class="relative z-10 max-w-2xl space-y-8">
+      <h2 class="text-4xl sm:text-5xl font-bold tracking-wide drop-shadow-sm font-serif" data-aos="fade-down" data-aos-delay="100">
+        Mission Accomplished 🎯
+      </h2>
+      <p class="text-base sm:text-lg italic font-light leading-relaxed text-gray-700" data-aos="fade-up" data-aos-delay="300">
+        Dan sekarang, wishlist barunya cuma satu... <br>
+        semoga kita gak pernah berhenti nambah kenangan 🫶✨
+      </p>
+      <div data-aos="zoom-in" data-aos-delay="500">
+        <a href="#" class="bg-gradient-to-r from-green-500 via-lime-500 to-emerald-400 hover:from-green-600 hover:to-lime-600 text-white px-6 py-3 rounded-full shadow-md transition duration-300 text-base">
+          “Bukti Kalau Sabar Dan Usaha Itu Engga Sia-Sia” 💪🌈
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-sm py-8">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <p>&copy; Mau Bucin? Hubungin Kita!!!</p>
+    </div>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: false,
+      duration: 500,
+      easing: 'ease-in-out',
+    });
+  </script>
+</body>
+</html>
