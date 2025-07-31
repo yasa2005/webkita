@@ -8,28 +8,16 @@
 </head>
 <body class="bg-pink-50 min-h-screen text-gray-800">
 
-  <!-- Tombol Kembali -->
-  <a href="web.html#section-wishlist" class="mb-6 self-start ml-4 text-pink-600 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">
-    ← Kembali
-  </a>
+  <a href="web.html#section-wishlist" class="mb-6 ml-4 text-pink-600 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">← Kembali</a>
 
-  <!-- Container -->
   <div class="max-w-xl mx-auto py-10 px-4">
-    <h1 class="text-3xl font-bold mb-6 text-pink-600 text-center">
-      Tempat yang Mau Kita Kunjungi 🗺️
-    </h1>
+    <h1 class="text-3xl font-bold mb-6 text-pink-600 text-center">Tempat yang Mau Kita Kunjungi 🗺️</h1>
 
-    <!-- Input dan Tombol Tambah -->
     <div class="flex mb-4">
-      <input id="wishlistInput" type="text" placeholder="Tambah tempat impian..."
-        class="flex-1 px-4 py-2 rounded-l-lg border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
-      <button onclick="addWishlist()" 
-        class="bg-pink-500 text-white px-4 py-2 rounded-r-lg hover:bg-pink-600">
-        Tambah
-      </button>
+      <input id="wishlistInput" type="text" placeholder="Tambah tempat impian..." class="flex-1 px-4 py-2 rounded-l-lg border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+      <button onclick="addWishlist()" class="bg-pink-500 text-white px-4 py-2 rounded-r-lg hover:bg-pink-600">Tambah</button>
     </div>
 
-    <!-- Daftar Wishlist -->
     <ul id="wishlistItems" class="space-y-2"></ul>
   </div>
 
@@ -38,7 +26,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
     import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-    // Konfigurasi Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCSqV05L8AA_hv5YOlSdvfmbgfJBKdykgs",
       authDomain: "ilyasa21.firebaseapp.com",
@@ -50,7 +37,6 @@
       measurementId: "G-R9YN2806EZ"
     };
 
-    // Inisialisasi Firebase
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const wishlistRef = ref(db, 'wishlist');
@@ -58,8 +44,8 @@
     const input = document.getElementById('wishlistInput');
     const list = document.getElementById('wishlistItems');
 
-    // Tambah data wishlist ke database
-    function addWishlist() {
+    // Tambah wishlist ke database
+    window.addWishlist = function () {
       const tempat = input.value.trim();
       if (tempat !== '') {
         push(wishlistRef, { tempat });
@@ -67,7 +53,7 @@
       }
     }
 
-    // Menampilkan data wishlist secara realtime
+    // Tampilkan data real-time
     onValue(wishlistRef, (snapshot) => {
       list.innerHTML = '';
       snapshot.forEach((childSnapshot) => {
@@ -79,22 +65,18 @@
 
         li.innerHTML = `
           <span>${data.tempat}</span>
-          <button onclick="selesaikan('${key}', '${data.tempat}')" class="text-sm bg-green-400 text-white px-3 py-1 rounded hover:bg-green-500">
-            Selesai
-          </button>
+          <button onclick="selesaikan('${key}', '${data.tempat}')" class="text-sm bg-green-400 text-white px-3 py-1 rounded hover:bg-green-500">Selesai</button>
         `;
-
         list.appendChild(li);
       });
     });
 
-    // Fungsi untuk memindahkan ke halaman misi dan hapus dari wishlist
+    // Pindahkan ke mission dan hapus dari wishlist
     window.selesaikan = function(key, tempat) {
       const selesaiRef = ref(db, 'mission');
       push(selesaiRef, { tempat });
       remove(ref(db, 'wishlist/' + key));
     }
   </script>
-
 </body>
 </html>
