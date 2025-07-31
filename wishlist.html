@@ -71,11 +71,14 @@
       });
     });
 
-    // Pindahkan ke mission dan hapus dari wishlist
+    // Pindahkan ke mission dan hapus dari wishlist lalu pindah halaman
     window.selesaikan = function(key, tempat) {
       const selesaiRef = ref(db, 'mission');
-      push(selesaiRef, { tempat });
-      remove(ref(db, 'wishlist/' + key));
+      push(selesaiRef, { tempat }).then(() => {
+        remove(ref(db, 'wishlist/' + key)).then(() => {
+          window.location.href = 'mission.html';
+        });
+      });
     }
   </script>
 </body>
