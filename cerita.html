@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Curhat Bareng 💌</title>
+  <meta name="description" content="Curhatan kita semua">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <style>
+    body {
+      background-image: url('https://i.ibb.co/JnPDRPb/gajah-lucu-bg.jpg');
+      background-size: 150px;
+      background-repeat: repeat;
+      background-attachment: fixed;
+    }
+
+    .chat-bubble {
+      max-width: 75%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      position: relative;
+      word-wrap: break-word;
+    }
+
+    .chat-left {
+      background-color: #e5e5ea;
+      border-top-left-radius: 0;
+    }
+
+    .chat-right {
+      background-color: #dcf8c6;
+      border-top-right-radius: 0;
+      margin-left: auto;
+    }
+
+    #curhatList::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #curhatList::-webkit-scrollbar-thumb {
+      background-color: #fbb6ce;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+  <div class="min-h-screen flex flex-col bg-white bg-opacity-70">
+    <!-- Tombol kembali -->
+    <div class="px-4 sm:px-6 pt-4">
+      <a href="web.html#section-cerita" class="inline-block text-emerald-700 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-green-100 transition">
+        ← Kembali
+      </a>
+    </div>
+
+    <!-- Judul -->
+    <div class="text-center mt-4 px-4 sm:px-6">
+      <h1 class="text-2xl sm:text-3xl font-bold">Curhat Bareng 💌</h1>
+      <p class="text-sm text-gray-600 mt-1">Cerita kamu, cerita kita semua 💬</p>
+    </div>
+
+    <!-- Daftar Curhat -->
+    <div id="curhatList" class="flex-1 overflow-y-auto px-4 sm:px-6 py-4 space-y-3 mt-4">
+      <!-- Curhatan muncul di sini -->
+    </div>
+
+    <!-- Input Curhat -->
+    <div class="px-4 sm:px-6 py-4 bg-white bg-opacity-80 border-t border-gray-300">
+      <div class="flex flex-col sm:flex-row gap-2">
+        <input id="curhatInput" type="text" placeholder="Tulis curhatanmu..." class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 text-sm sm:text-base">
+        <button onclick="kirimCurhat()" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition text-sm sm:text-base">
+          Kirim
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyXXXXXXX",
+      authDomain: "ilyasa21.firebaseapp.com",
+      databaseURL: "https://ilyasa21-default-rtdb.firebaseio.com",
+      projectId: "ilyasa21",
+      storageBucket: "ilyasa21.appspot.com",
+      messagingSenderId: "1234567890",
+      appId: "1:1234567890:web:abcdefg"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const myId = localStorage.getItem("curhat_user_id") || generateId();
+    localStorage.setItem("curhat_user_id", myId);
+
+    function generateId() {
+      return 'id-' + Math.random().toString(36).substr(2, 9);
+    }
+
+    function kirimCurhat() {
+      const isi = document.getElementById("curhatInput").value.trim();
+      if (isi === "") return;
+      const waktu = new Date().toLocaleString();
+      const curhatBaru = { isi, waktu, user: myId };
+      db.ref("curhat").push(curhatBaru);
+      document.getElementById("curhatInput").value = "";
+    }
+
+    function tampilkanCurhat() {
+      const list = document.getElementById("curhatList");
+      db.ref("curhat").on("value", (snapshot) => {
+        list.innerHTML = "";
+        snapshot.forEach((data) => {
+          const curhat = data.val();
+          const key = data.key;
+          const isSaya = curhat.user === myId;
+
+          const div = document.createElement("div");
+          div.className = "flex flex-col";
+
+          div.innerHTML = `
+            <div class="chat-bubble ${isSaya ? 'chat-right' : 'chat-left'} relative">
+              <p class="text-sm">${curhat.isi}</p>
+              <p class="text-xs text-gray-600 mt-1 text-right">${curhat.waktu}</p>
+              ${isSaya ? `
+                <div class="absolute top-1 right-2 flex space-x-2 text-sm">
+                  <button onclick="editCurhat('${key}', '${curhat.isi.replace(/'/g, "\\'")}')" title="Edit" class="hover:text-blue-600">✏️</button>
+                  <button onclick="hapusCurhat('${key}')" title="Hapus" class="hover:text-red-600">🗑️</button>
+                </div>
+              ` : ''}
+            </div>
+          `;
+
+          list.appendChild(div);
+        });
+
+        list.scrollTop = list.scrollHeight;
+      });
+    }
+
+    function hapusCurhat(key) {
+      if (confirm("Yakin ingin menghapus curhatan ini?")) {
+        db.ref("curhat/" + key).remove();
+      }
+    }
+
+    function editCurhat(key, oldText) {
+      const baru = prompt("Edit curhatan kamu:", oldText);
+      if (baru !== null && baru.trim() !== "") {
+        db.ref("curhat/" + key).update({ isi: baru.trim() });
+      }
+    }
+
+    tampilkanCurhat();
+  </script>
+</body>
+</html>
