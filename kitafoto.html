@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foto Kita 💞</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lightbox2 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+
+  <style>
+    .gallery-item {
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="bg-pink-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="text-center py-10 bg-gradient-to-r from-pink-200 via-green-100 to-rose-200 shadow-md">
+    <h1 class="text-4xl font-bold text-pink-800">RISTYSA 💑</h1>
+    <p class="text-lg mt-2 text-green-700">Kenangan manis yang tak terlupakan 🌸</p>
+  </header>
+
+  <!-- Galeri -->
+  <main class="px-4 sm:px-10 py-10">
+    <div class="max-w-screen-xl mx-auto">
+
+<!-- Baris Atas: 5 Foto Besar -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 justify-items-center mb-10">
+  <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita2.jpg" data-lightbox="galeri" data-title="Foto 1">
+    <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita2.jpg" alt="Foto 1" class="w-52 h-72 object-cover rounded-xl shadow-lg gallery-item">
+  </a>
+  <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita3.jpg" data-lightbox="galeri" data-title="Foto 2">
+    <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita3.jpg" alt="Foto 2" class="w-52 h-72 object-cover rounded-xl shadow-lg gallery-item">
+  </a>
+  <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita4.jpg" data-lightbox="galeri" data-title="Foto 3">
+    <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita4.jpg" alt="Foto 3" class="w-52 h-72 object-cover rounded-xl shadow-lg gallery-item">
+  </a>
+  <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita5.jpg" data-lightbox="galeri" data-title="Foto 4">
+    <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita5.jpg" alt="Foto 4" class="w-52 h-72 object-cover rounded-xl shadow-lg gallery-item">
+  </a>
+  <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita6.jpg" data-lightbox="galeri" data-title="Foto 5">
+    <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita6.jpg" alt="Foto 5" class="w-52 h-72 object-cover rounded-xl shadow-lg gallery-item">
+  </a>
+</div>
+
+<!-- Baris Bawah: 2 Foto Tengah Besar -->
+<div class="flex justify-center gap-8">
+  <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita7.jpg" data-lightbox="galeri" data-title="Foto 6">
+    <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita7.jpg" alt="Foto 6" class="w-52 h-72 object-cover rounded-xl shadow-lg gallery-item">
+  </a>
+  <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita8.jpg" data-lightbox="galeri" data-title="Foto 7">
+    <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/fotokita8.jpg" alt="Foto 7" class="w-52 h-72 object-cover rounded-xl shadow-lg gallery-item">
+  </a>
+</div>
+<!-- Tombol Kembali -->
+      <div class="flex justify-center mt-12">
+        <a href="fotokita.html" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out">
+          ⬅️ Kembali ke Foto Kita
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightbox Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+</body>
+</html>
