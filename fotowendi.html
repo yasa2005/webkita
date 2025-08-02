@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri Wendi 📷</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lightbox2 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+
+  <style>
+    .gallery-item {
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="bg-green-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="text-center py-10 bg-gradient-to-r from-green-200 via-lime-100 to-green-300 shadow-lg">
+    <h1 class="text-4xl font-bold mb-2 text-green-900">WENDI ILYASA 💚</h1>
+  </header>
+
+  <!-- Galeri -->
+  <main class="p-4 sm:p-8 lg:p-10">
+    <div class="max-w-screen-xl mx-auto flex flex-col items-center">
+      <!-- Teks Lokasi -->
+      <div class="text-center mb-8">
+        <h2 class="text-xl sm:text-2xl font-semibold text-green-700">
+          "Taman Mawar Garut 🌹🌿"
+        </h2>
+      </div>
+
+      <!-- Grid Galeri -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+        <!-- Foto 1 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi2.jpg" data-lightbox="galeri" data-title="Wendi 1">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi2.jpg" alt="Wendi 1" class="rounded-xl shadow-lg gallery-item w-60 object-cover">
+        </a>
+
+        <!-- Foto 2 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi3.jpg" data-lightbox="galeri" data-title="Wendi 2">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi3.jpg" alt="Wendi 2" class="rounded-xl shadow-lg gallery-item w-60 object-cover">
+        </a>
+
+        <!-- Foto 3 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi4.jpg" data-lightbox="galeri" data-title="Wendi 3">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi4.jpg" alt="Wendi 3" class="rounded-xl shadow-lg gallery-item w-60 object-cover">
+        </a>
+
+        <!-- Foto 4 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi5.jpg" data-lightbox="galeri" data-title="Wendi 4">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/wendi5.jpg" alt="Wendi 4" class="rounded-xl shadow-lg gallery-item w-60 object-cover">
+        </a>
+      </div>
+
+      <!-- Tombol Kembali -->
+      <div class="mt-12">
+        <a href="fotokita.html" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out">
+          ⬅️ Kembali ke Foto Kita
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightbox Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+</body>
+</html>
