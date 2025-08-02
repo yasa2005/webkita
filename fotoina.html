@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeri Foto Ina 📸</title>
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-pink-50 min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center text-pink-700 mb-6">Galeri Foto Ina 📸</h1>
+    <div class="flex justify-center mb-4">
+      <input type="file" id="uploadFoto" accept="image/*" class="mr-2" />
+      <button id="btnUpload" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded">Unggah Foto</button>
+    </div>
+    <div id="galeri" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <p class="col-span-full text-center text-gray-500">Memuat galeri...</p>
+    </div>
+  </div>
+
+  <script>
+    // Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCSqV05L8AA_hv5YOlSdvfmbgfJBKdykgs",
+      authDomain: "ilyasa21.firebaseapp.com",
+      databaseURL: "https://ilyasa21-default-rtdb.firebaseio.com",
+      projectId: "ilyasa21",
+      storageBucket: "ilyasa21.appspot.com",
+      messagingSenderId: "2903513667",
+      appId: "1:2903513667:web:231dfd4868499de08bd2f6",
+      measurementId: "G-R9YN2806EZ"
+    };
+
+    // Inisialisasi Firebase
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    const db = firebase.database();
+
+    // Upload Foto
+    document.getElementById("btnUpload").addEventListener("click", () => {
+      const fileInput = document.getElementById("uploadFoto");
+      const file = fileInput.files[0];
+      const galeri = document.getElementById("galeri");
+
+      if (!file) {
+        alert("Pilih foto terlebih dahulu!");
+        return;
+      }
+
+      galeri.innerHTML = "<p class='col-span-full text-center text-gray-500'>Mengunggah gambar...</p>";
+
+      const timestamp = Date.now();
+      const fileName = `${timestamp}_${file.name}`;
+      const storageRef = storage.ref(`fotoina/${fileName}`);
+
+      storageRef.put(file)
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => db.ref("foto").push({ url, refPath: `fotoina/${fileName}` }))
+        .then(() => {
+          fileInput.value = "";
+          tampilkanGaleri();
+        })
+        .catch(error => {
+          console.error("Gagal unggah:", error);
+          alert("Gagal mengunggah gambar.");
+          tampilkanGaleri();
+        });
+    });
+
+    // Tampilkan Galeri
+    function tampilkanGaleri() {
+      const galeri = document.getElementById("galeri");
+      galeri.innerHTML = "<p class='col-span-full text-center text-gray-500'>Memuat galeri...</p>";
+
+      db.ref("foto").once("value", snapshot => {
+        galeri.innerHTML = ""; // kosongkan dulu
+
+        if (!snapshot.exists()) {
+          galeri.innerHTML = "<p class='col-span-full text-center text-gray-500'>Belum ada foto.</p>";
+          return;
+        }
+
+        snapshot.forEach(child => {
+          const data = child.val();
+          const img = document.createElement("img");
+          img.src = data.url;
+          img.alt = "Foto Galeri";
+          img.className = "w-full rounded shadow-md hover:scale-105 transform transition duration-300";
+          galeri.appendChild(img);
+        });
+      }, error => {
+        console.error("Gagal mengambil galeri:", error);
+        galeri.innerHTML = "<p class='col-span-full text-center text-red-500'>Gagal memuat galeri.</p>";
+      });
+    }
+
+    // Saat halaman dibuka
+    window.onload = tampilkanGaleri;
+  </script>
+</body>
+</html>
