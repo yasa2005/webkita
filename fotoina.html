@@ -2,105 +2,79 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galeri Foto Ina 📸</title>
-  <!-- Firebase SDK (compat) -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri Ina 📸</title>
+
   <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-</head>
-<body class="bg-pink-50 min-h-screen">
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-center text-pink-700 mb-6">Galeri Foto Ina 📸</h1>
-    <div class="flex justify-center mb-4">
-      <input type="file" id="uploadFoto" accept="image/*" class="mr-2" />
-      <button id="btnUpload" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded">Unggah Foto</button>
-    </div>
-    <div id="galeri" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      <p class="col-span-full text-center text-gray-500">Memuat galeri...</p>
-    </div>
-  </div>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
-    // Konfigurasi Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyCSqV05L8AA_hv5YOlSdvfmbgfJBKdykgs",
-      authDomain: "ilyasa21.firebaseapp.com",
-      databaseURL: "https://ilyasa21-default-rtdb.firebaseio.com",
-      projectId: "ilyasa21",
-      storageBucket: "ilyasa21.appspot.com",
-      messagingSenderId: "2903513667",
-      appId: "1:2903513667:web:231dfd4868499de08bd2f6",
-      measurementId: "G-R9YN2806EZ"
-    };
+  <!-- Lightbox2 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
 
-    // Inisialisasi Firebase
-    firebase.initializeApp(firebaseConfig);
-    const storage = firebase.storage();
-    const db = firebase.database();
-
-    // Upload Foto
-    document.getElementById("btnUpload").addEventListener("click", () => {
-      const fileInput = document.getElementById("uploadFoto");
-      const file = fileInput.files[0];
-      const galeri = document.getElementById("galeri");
-
-      if (!file) {
-        alert("Pilih foto terlebih dahulu!");
-        return;
-      }
-
-      galeri.innerHTML = "<p class='col-span-full text-center text-gray-500'>Mengunggah gambar...</p>";
-
-      const timestamp = Date.now();
-      const fileName = `${timestamp}_${file.name}`;
-      const storageRef = storage.ref(`fotoina/${fileName}`);
-
-      storageRef.put(file)
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => db.ref("foto").push({ url, refPath: `fotoina/${fileName}` }))
-        .then(() => {
-          fileInput.value = "";
-          tampilkanGaleri();
-        })
-        .catch(error => {
-          console.error("Gagal unggah:", error);
-          alert("Gagal mengunggah gambar.");
-          tampilkanGaleri();
-        });
-    });
-
-    // Tampilkan Galeri
-    function tampilkanGaleri() {
-      const galeri = document.getElementById("galeri");
-      galeri.innerHTML = "<p class='col-span-full text-center text-gray-500'>Memuat galeri...</p>";
-
-      db.ref("foto").once("value", snapshot => {
-        galeri.innerHTML = ""; // kosongkan dulu
-
-        if (!snapshot.exists()) {
-          galeri.innerHTML = "<p class='col-span-full text-center text-gray-500'>Belum ada foto.</p>";
-          return;
-        }
-
-        snapshot.forEach(child => {
-          const data = child.val();
-          const img = document.createElement("img");
-          img.src = data.url;
-          img.alt = "Foto Galeri";
-          img.className = "w-full rounded shadow-md hover:scale-105 transform transition duration-300";
-          galeri.appendChild(img);
-        });
-      }, error => {
-        console.error("Gagal mengambil galeri:", error);
-        galeri.innerHTML = "<p class='col-span-full text-center text-red-500'>Gagal memuat galeri.</p>";
-      });
+  <style>
+    .gallery-item {
+      transition: transform 0.3s ease;
     }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
 
-    // Saat halaman dibuka
-    window.onload = tampilkanGaleri;
-  </script>
+<body class="bg-pink-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="text-center py-10 bg-gradient-to-r from-pink-200 via-rose-100 to-pink-300 shadow-lg">
+    <h1 class="text-4xl font-bold mb-2">INA RISTIYANI 💖</h1>
+  </header>
+
+  <!-- Galeri -->
+  <main class="p-4 sm:p-8 lg:p-10">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Teks Lokasi -->
+      <div class="text-center mb-6">
+        <h2 class="text-xl sm:text-2xl font-semibold text-rose-600">"Taman Mawar Garut 🌹"</h2>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <!-- Foto 1 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/ina2.jpg" data-lightbox="galeri" data-title="Foto 1">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/ina2.jpg" alt="Foto 1" class="rounded-xl shadow-lg gallery-item">
+        </a>
+
+        <!-- Foto 2 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/ina3.jpg" data-lightbox="galeri" data-title="Foto 2">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/ina3.jpg" alt="Foto 2" class="rounded-xl shadow-lg gallery-item">
+        </a>
+
+        <!-- Foto 3 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/ina4.jpg" data-lightbox="galeri" data-title="Foto 3">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/ina4.jpg" alt="Foto 3" class="rounded-xl shadow-lg gallery-item">
+        </a>
+
+        <!-- Foto 4 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/ina5.jpg" data-lightbox="galeri" data-title="Foto 4">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/ina5.jpg" alt="Foto 4" class="rounded-xl shadow-lg gallery-item">
+        </a>
+
+        <!-- Foto 5 -->
+        <a href="https://raw.githubusercontent.com/yasa2005/webkita/main/ina6.jpg" data-lightbox="galeri" data-title="Foto 5">
+          <img src="https://raw.githubusercontent.com/yasa2005/webkita/main/ina6.jpg" alt="Foto 5" class="rounded-xl shadow-lg gallery-item">
+        </a>
+      </div>
+
+      <!-- Tombol Kembali -->
+      <div class="flex justify-center mt-12">
+        <a href="fotokita.html" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out">
+          ⬅️ Kembali ke Foto Kita
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Lightbox Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
 </body>
 </html>
