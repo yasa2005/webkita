@@ -23,44 +23,69 @@
   </style>
 </head>
 <body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center justify-center p-6 text-gray-800">
- <a href="web.html#section-video" class="mb-6 self-start ml-4 text-pink-600 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">← Kembali</a>
+  
+  <a href="story.html#section-video" class="mb-6 self-start ml-4 text-pink-600 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">← Kembali</a>
   <h1 class="text-3xl sm:text-4xl font-bold mb-6 text-center">Kenangan Video Kita 🎬</h1>
 
-  <div id="frameVideo" class="rounded-xl overflow-hidden shadow-lg border border-pink-300 transition-scale">
-    <video 
-      id="videoKita" 
-      class="transition-scale video-small"
-      autoplay 
-      muted 
-      loop 
-      playsinline
-    >
-      <source src="videokita1.mp4" type="video/mp4" />
-      Maaf, browser kamu tidak mendukung video HTML5.
-    </video>
+  <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
+
+    <!-- Video 1 -->
+    <div class="rounded-xl overflow-hidden shadow-lg border border-pink-300 transition-scale">
+      <video 
+        id="video1" 
+        class="transition-scale video-small"
+        autoplay 
+        muted 
+        loop 
+        playsinline
+      >
+        <source src="videokita1.mp4" type="video/mp4" />
+        Maaf, browser kamu tidak mendukung video HTML5.
+      </video>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="rounded-xl overflow-hidden shadow-lg border border-pink-300 transition-scale">
+      <video 
+        id="video2" 
+        class="transition-scale video-small"
+        autoplay 
+        muted 
+        loop 
+        playsinline
+      >
+        <source src="videokita2.mp4" type="video/mp4" />
+        Maaf, browser kamu tidak mendukung video HTML5.
+      </video>
+    </div>
+
   </div>
 
-  <p class="mt-4 text-sm text-gray-600 text-center">💖 Dibuat spesial untuk kamu yang selalu ada di hati 💖</p>
+  <p class="mt-6 text-sm text-gray-600 text-center">💖 Dibuat spesial untuk kamu yang selalu ada di hati 💖</p>
 
   <script>
-    const video = document.getElementById('videoKita');
+    function setupVideoToggle(videoId) {
+      const video = document.getElementById(videoId);
+      video.addEventListener('click', () => {
+        video.classList.toggle('video-small');
+        video.classList.toggle('video-medium');
 
-    video.addEventListener('click', () => {
-      video.classList.toggle('video-small');
-      video.classList.toggle('video-medium');
+        if (video.classList.contains('video-medium')) {
+          video.muted = false;
+          video.controls = true;
+          video.loop = false;
+          video.play();
+        } else {
+          video.muted = true;
+          video.controls = false;
+          video.loop = true;
+          video.play();
+        }
+      });
+    }
 
-      if (video.classList.contains('video-medium')) {
-        video.muted = false;
-        video.controls = true;
-        video.loop = false;
-        video.play();
-      } else {
-        video.muted = true;
-        video.controls = false;
-        video.loop = true;
-        video.play();
-      }
-    });
+    setupVideoToggle('video1');
+    setupVideoToggle('video2');
   </script>
 
 </body>
