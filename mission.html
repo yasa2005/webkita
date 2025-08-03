@@ -13,7 +13,7 @@
   <h1 class="text-3xl sm:text-4xl font-bold text-center text-emerald-700 mb-6">Tempat yang Udah Kita Datengin 💖</h1>
 
   <div id="missionContainer" class="grid gap-4 max-w-2xl mx-auto">
-    <!-- Diisi lewat JS -->
+    <p id="loadingText" class="text-gray-500 text-center">Memuat data kenangan... 🕰️</p>
   </div>
 
   <script type="module">
@@ -38,9 +38,10 @@
     const container = document.getElementById('missionContainer');
 
     onValue(missionRef, (snapshot) => {
-      container.innerHTML = '';
+      container.innerHTML = ''; // Hilangkan loading
+
       if (!snapshot.exists()) {
-        container.innerHTML = '<p class="text-center text-gray-500">Belum ada yang tercapai nih 😅</p>';
+        container.innerHTML = '<p class="text-left text-gray-500">Belum ada yang tercapai nih 😅</p>';
         return;
       }
 
@@ -83,5 +84,3 @@
 
 </body>
 </html>
-
-
