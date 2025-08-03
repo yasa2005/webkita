@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wishlist Tempat Kita 💕</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body class="bg-pink-50 min-h-screen text-gray-800">
-<br>
-  <a href="sweet.html#section-wishlist" class="mb-6 ml-4 text-pink-600 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">← Kembali</a>
+<body class="bg-gradient-to-br from-pink-100 to-pink-200 min-h-screen text-gray-800">
 
-  <div class="max-w-xl mx-auto py-10 px-4">
-    <h1 class="text-3xl font-bold mb-6 text-pink-600 text-center">Tempat yang Mau Kita Kunjungi 🗺️</h1>
+  <div class="p-4">
+    <a href="sweet.html#section-wishlist" class="inline-block text-pink-700 font-semibold bg-white py-2 px-4 rounded-full shadow hover:bg-pink-100 transition">← Kembali</a>
+  </div>
+
+  <div class="max-w-xl mx-auto py-6 px-4">
+    <h1 class="text-3xl font-bold mb-6 text-pink-600 text-left">Tempat yang Mau Kita Kunjungi 🗺️</h1>
 
     <div class="flex mb-4">
       <input id="wishlistInput" type="text" placeholder="Tambah tempat impian..." class="flex-1 px-4 py-2 rounded-l-lg border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
@@ -62,13 +65,16 @@
 
         const li = document.createElement('li');
         li.className = 'flex justify-between items-center bg-white p-3 rounded shadow';
+        li.setAttribute('data-aos', 'fade-up');  // Efek muncul pelan
+        li.setAttribute('data-aos-duration', '800');
 
         li.innerHTML = `
-          <span>${data.tempat}</span>
-          <button onclick="selesaikan('${key}', '${data.tempat}')" class="text-sm bg-green-400 text-white px-3 py-1 rounded hover:bg-green-500">Selesai</button>
+          <span class="text-gray-700">${data.tempat}</span>
+          <button onclick="selesaikan('${key}', '${data.tempat}')" class="text-sm bg-green-400 text-white px-3 py-1 rounded hover:bg-green-500 transition">Selesai</button>
         `;
         list.appendChild(li);
       });
+      AOS.refresh(); // Supaya AOS tetap bisa jalan di elemen yang baru ditambahkan
     });
 
     // Pindahkan ke mission dan hapus dari wishlist lalu pindah halaman
@@ -81,5 +87,11 @@
       });
     }
   </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
+  
