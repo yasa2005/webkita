@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Moments 💘</title>
+  <meta name="description" content="Halaman manis penuh kenangan bucin Ina dan Wendi." />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    html, body {
+      scroll-behavior: smooth;
+    }
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInSlide {
+      animation: fadeInSlide 0.6s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-rose-100 to-fuchsia-100 text-gray-800 font-sans">
+
+<!-- Navbar -->
+<nav class="bg-white bg-opacity-70 backdrop-blur shadow fixed top-0 w-full z-40">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-lg font-bold text-pink-600">💘 Sweet Moments 💘</div>
+    <div class="space-x-6 text-sm sm:text-base font-medium">
+      <a href="#section-wishlist" class="text-gray-700 hover:text-pink-600 transition">Wishlist</a>
+      <a href="#section-mission" class="text-gray-700 hover:text-pink-600 transition">Mission</a>
+      <a href="web.html#section-sweet" class="text-gray-700 hover:text-pink-600 transition">Kembali</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Sambutan -->
+<section class="min-h-screen flex items-center justify-center pt-24 text-center px-6">
+  <div class="max-w-3xl space-y-6 animate-fadeInSlide" data-aos="fade-up">
+    <h1 class="text-4xl sm:text-5xl font-bold font-serif text-pink-700 drop-shadow">Hai Cinta, Ini Halaman Manis Kita 🍬</h1>
+    <p class="text-base sm:text-lg italic text-gray-700 leading-relaxed">
+      Setiap momen kecil bareng kamu selalu terasa spesial.<br>
+      Di halaman ini, kita simpan semua kenangan paling manis...<br>
+      Karena kamu bukan cuma kenangan, kamu rumahnya rasa sayang 💖📸🎬
+    </p>
+    <p class="text-sm sm:text-base text-pink-600 font-medium">
+      Yuk sayang scroll pelan-pelan, biar kenangannya masuk hati 💌🍓
+    </p>
+  </div>
+</section>
+
+<!-- Section Wishlist -->
+  <section id="section-wishlist" class="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-32 pb-20 text-gray-900 bg-gradient-to-br from-rose-100 via-pink-200 to-fuchsia-300" data-aos="fade-up">
+    <h2 class="text-4xl sm:text-5xl font-bold drop-shadow-sm mb-4 tracking-wide" data-aos="fade-down" data-aos-delay="100">Wishlist Kita</h2>
+    <p class="text-base sm:text-lg italic font-light max-w-xl mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="300">
+      Wishlist ini akan terus bertambah… selama kita terus bersama 🤭
+    </p>
+    <a href="wishlist" class="bg-gradient-to-r from-fuchsia-500 via-pink-500 to-rose-500 hover:from-pink-600 hover:to-fuchsia-600 text-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300 text-base" data-aos="zoom-in" data-aos-delay="500">
+      Kemana Lagi yah Kita, Sayang? 💗🌈
+    </a>
+  </section>
+
+  <!-- Section Mission -->
+  <section id="section-mission" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-32 pb-24 text-gray-900 bg-gradient-to-br from-emerald-100 via-green-200 to-lime-100" data-aos="fade-up">
+    <div class="relative z-10 max-w-2xl space-y-8">
+      <h2 class="text-4xl sm:text-5xl font-bold tracking-wide drop-shadow-sm font-serif" data-aos="fade-down" data-aos-delay="100">Mission Accomplished 🎯</h2>
+      <p class="text-base sm:text-lg italic font-light leading-relaxed text-gray-700" data-aos="fade-up" data-aos-delay="300">
+        Dan sekarang, wishlist barunya cuma satu... <br>
+        semoga kita gak pernah berhenti nambah kenangan 🫶✨
+      </p>
+      <div data-aos="zoom-in" data-aos-delay="500">
+        <a href="mission" class="inline-block bg-gradient-to-r from-green-500 via-lime-500 to-emerald-400 hover:from-green-600 hover:to-lime-600 text-white px-6 py-4 rounded-full shadow-md transition duration-300 text-base text-center leading-snug">
+          “Bukti Kalau Sabar Dan Usaha<br>Itu Engga Sia-Sia” 💪🌈
+        </a>
+      </div>
+    </div>
+  </section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-400 text-sm py-6 text-center">
+  <p>&copy; 2025 Sweet Love Ina & Wendi. All Memories Reserved 💑</p>
+</footer>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once: false, duration: 600, easing: 'ease-in-out' });
+</script>
+
+</body>
+</html>
