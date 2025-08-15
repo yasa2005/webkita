@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jasa Legalitas Usaha — PT, PT Perorangan, CV, Yayasan</title>
+  <meta name="description" content="Layanan pendirian PT, PT Perorangan, CV, dan Yayasan. Akta Notaris, SK Kemenkumham, NIB, NPWP, OSS, Perizinan Sektor. Fast response & resmi." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f172a;
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --brand:#0ea5e9;
+      --brand-2:#22d3ee;
+      --accent:#22c55e;
+      --danger:#ef4444;
+      --shadow: 0 10px 30px rgba(2,8,23,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      background:linear-gradient(180deg,#07111f 0%, #0b1220 30%, #0b1220 100%);
+      color:var(--text);
+      font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px,92%);margin-inline:auto}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--brand);color:#001018;padding:.9rem 1.2rem;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);transition:.2s}
+    .btn:hover{transform:translateY(-1px);filter:saturate(1.1)}
+    .btn.outline{background:transparent;color:var(--text);border-color:rgba(148,163,184,.4)}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(5,10,20,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(148,163,184,.15)}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    .brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
+    .brand i{font-size:1.6rem;color:var(--brand)}
+    .menu{display:flex;gap:1.2rem;align-items:center}
+    .menu a{opacity:.9}
+    .menu a:hover{opacity:1}
+    .hamb{display:none}
+
+    @media (max-width: 860px){
+      .hamb{display:inline-flex}
+      .menu{
+        position:fixed;
+        inset:64px 0 auto 0;
+        background:rgba(9,15,28,.95);
+        backdrop-filter:blur(8px);
+        flex-direction:column;
+        padding:1rem;
+        border-bottom:1px solid rgba(148,163,184,.15);
+        transform:scaleY(0);
+        transform-origin:top;
+        transition:.2s
+      }
+      .menu.show{transform:scaleY(1)}
+    }
+
+    /* HERO */
+    .hero{
+      padding:5rem 0 3rem;
+      background:
+        radial-gradient(1200px 600px at 80% -20%, rgba(34,211,238,.15), transparent 60%),
+        radial-gradient(800px 500px at 0% -10%, rgba(14,165,233,.18), transparent 60%);
+      border-bottom:1px solid rgba(148,163,184,.12)
+    }
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center}
+    .headline{font-size:clamp(2rem,4vw,3rem);line-height:1.2;font-weight:900;letter-spacing:.2px}
+    .sub{color:var(--muted);margin:.9rem 0 1.6rem}
+    .badges{display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0 1.4rem}
+    .badge{border:1px solid rgba(148,163,184,.25);padding:.35rem .6rem;border-radius:999px;font-size:.88rem;color:#cdd5e1;display:inline-flex;align-items:center;gap:.35rem}
+    .hero-card{background:linear-gradient(180deg,rgba(13,20,35,.7),rgba(9,15,28,.9));padding:1.2rem;border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-card h3{margin:.2rem 0 1rem}
+    .list{display:grid;gap:.5rem}
+    .list li{display:flex;gap:.6rem;align-items:flex-start}
+    .list i{color:var(--accent)}
+
+    /* SECTION */
+    section{padding:3.5rem 0;border-bottom:1px solid rgba(148,163,184,.12)}
+    .sec-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.6rem;flex-wrap:wrap}
+    .sec-title{font-size:1.8rem;font-weight:900}
+    .grid{display:grid;gap:1rem}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 900px){.hero-grid,.cols-3,.cols-2{grid-template-columns:1fr}}
+
+    .card{background:linear-gradient(180deg,rgba(13,20,35,.6),rgba(9,15,28,.9));border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow)}
+    .card h4{margin:.2rem 0 .4rem}
+    .muted{color:var(--muted)}
+
+    /* PRICING */
+    .price{display:flex;align-items:baseline;gap:.4rem;font-weight:900}
+    .price .big{font-size:2.1rem}
+    .chip{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .55rem;border-radius:999px;border:1px solid rgba(148,163,184,.25);font-size:.8rem}
+
+    /* TIMELINE */
+    .steps{counter-reset:st;display:grid;gap:1rem}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start}
+    .step i{background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.25);color:var(--brand-2);width:40px;height:40px;border-radius:10px;display:grid;place-items:center}
+
+    /* FAQ */
+    details{border:1px solid rgba(148,163,184,.2);border-radius:14px;padding:.8rem;background:rgba(12,19,33,.6)}
+    summary{cursor:pointer;font-weight:700}
+
+    /* CTA Sticky */
+    .wa{position:fixed;right:18px;bottom:18px;background:#25d366;color:#00210e;width:56px;height:56px;border-radius:999px;display:grid;place-items:center;box-shadow:var(--shadow);z-index:60}
+
+    /* Footer */
+    footer{padding:2.2rem 0;color:#cbd5e1}
+
+    /* Input */
+    .inp{width:100%;margin:.35rem 0 1rem;padding:.8rem;border-radius:12px;border:1px solid rgba(148,163,184,.28);background:rgba(10,16,28,.6);color:var(--text)}
+    .inp:focus{outline:2px solid rgba(14,165,233,.6);border-color:transparent}
+
+    /* EXTRA RESPONSIVE FIX */
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+      .headline { font-size: 1.8rem; }
+      .sec-title { font-size: 1.4rem; }
+      .btn { padding: 0.7rem 1rem; font-size: 0.9rem; }
+      .badge, .chip { font-size: 0.75rem; padding: .25rem .5rem; }
+      .menu a.btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <a href="#" class="brand"><i class="ri-shield-check-line"></i><span>LegalPro</span></a>
+      <button class="hamb btn outline" id="hamb"><i class="ri-menu-line"></i></button>
+      <div class="menu" id="menu">
+        <a href="#layanan">Layanan</a>
+        <a href="#harga">Harga</a>
+        <a href="#proses">Proses</a>
+        <a href="#testi">Testimoni</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontak" class="btn">Konsultasi Gratis</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badges">
+          <span class="badge"><i class="ri-verified-badge-line"></i>Resmi & Transparan</span>
+          <span class="badge"><i class="ri-flashlight-line"></i>Proses Cepat</span>
+          <span class="badge"><i class="ri-customer-service-2-line"></i>Tim Responsif</span>
+        </div>
+        <h1 class="headline">Bikin Usaha Jadi Legal<br>PT • PT Perorangan • CV • Yayasan</h1>
+        <p class="sub">Dari cek nama di AHU, Akta Notaris, SK Kemenkumham, sampai NIB-OSS dan NPWP. Semuanya satu pintu, harga jelas, tanpa ribet.</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <a href="#harga" class="btn"><i class="ri-price-tag-3-line"></i>Lihat Paket Harga</a>
+          <a href="#kontak" class="btn outline"><i class="ri-whatsapp-line"></i>Tanya via WhatsApp</a>
+        </div>
+        <div class="badges">
+          <span class="chip"><i class="ri-shield-star-line"></i>Garansi Dokumen</span>
+          <span class="chip"><i class="ri-file-shield-2-line"></i>Data Aman</span>
+          <span class="chip"><i class="ri-time-line"></i>Estimasi 5–14 hari kerja*</span>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <h3>Termasuk dalam paket</h3>
+          <ul class="list">
+            <li><i class="ri-check-double-line"></i><span>Pemeriksaan & pemesanan nama PT di AHU</span></li>
+            <li><i class="ri-check-double-line"></i><span>Akta Pendirian oleh Notaris</span></li>
+            <li><i class="ri-check-double-line"></i><span>SK Pengesahan Kemenkumham</span></li>
+            <li><i class="ri-check-double-line"></i><span>NPWP, NIB & OSS</span></li>
+            <li><i class="ri-check-double-line"></i><span>Konsultasi struktur modal & saham</span></li>
+          </ul>
+          <p class="muted" style="margin-top:.8rem">*Estimasi waktu bergantung kelengkapan data & antrian instansi.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LAYANAN -->
+  <section id="layanan">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Layanan Kami</h2>
+        <a class="btn outline" href="#kontak"><i class="ri-message-3-line"></i>Konsultasi Gratis</a>
+      </div>
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="chip"><i class="ri-building-2-line"></i>PT (Perseroan)</div>
+          <h4>Pendirian PT</h4>
+          <p class="muted">Cocok untuk usaha yang butuh profesionalitas dan akses pendanaan. Termasuk akta, SK, NPWP, NIB-OSS.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-user-5-line"></i>PT Perorangan</div>
+          <h4>PT Perorangan</h4>
+          <p class="muted">Solusi cepat & terjangkau untuk pelaku UMK. Pendirian lebih sederhana dengan pernyataan pendirian.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-team-line"></i>CV / Firma</div>
+          <h4>Pendirian CV</h4>
+          <p class="muted">Alternatif fleksibel untuk kemitraan bisnis. Termasuk akta, SKDP (jika diperlukan), dan NIB-OSS.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Yayasan</div>
+          <h4>Pendirian Yayasan</h4>
+          <p class="muted">Badan hukum nirlaba untuk sosial/pendidikan. Termasuk akta, SK Kemenkumham, NPWP, NIB-OSS.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-clipboard-line"></i>Perizinan</div>
+          <h4>Perizinan Sektor</h4>
+          <p class="muted">NIB, KBLI, sertifikat laik, dan izin sektoral (F&B, konstruksi, klinik, dll).</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-book-read-line"></i>Konsultasi</div>
+          <h4>Konsultasi Legal</h4>
+          <p class="muted">Atur struktur kepemilikan, modal, & pembagian saham yang tepat dari awal.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARGA / PRICING -->
+  <section id="harga">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Paket Harga Transparan</h2>
+        <span class="muted">Semua harga di bawah adalah contoh — bisa disesuaikan.</span>
+      </div>
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="chip"><i class="ri-user-5-line"></i>Pendirian PT </div>
+          <h4>PAKET BASIC</h4>
+          <div class="price"><span class="big">Rp4.250.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Konsultasi Ide & Struktur PT – Biar modal & usaha langsung sesuai rencana.</span></li>
+            <li><i class="ri-check-line"></i><span>Cek Nama PT & Branding Awal – Nama unik dan gampang diingat.</span></li>
+            <li><i class="ri-check-line"></i><span>Pembuatan Akta Pendirian & SK Kemenkumham – Langsung sah.</span></li>
+            <li><i class="ri-check-line"></i><span>Template Dokumen Legal Siap Pakai – Surat Kuasa, MoU, kontrak sederhana.</span></li>
+            <li><i class="ri-check-line"></i><span>Tips Branding & Logo Perusahaan – Biar PT terlihat profesional.</span></li>
+            <li><i class="ri-check-line"></i><span>NPWP, SKT, & NIB Lengkap – Tidak perlu repot urus pajak & izin usaha.</span></li>
+            <li><i class="ri-check-line"></i><span>Email Perusahaan </span></li>
+            <li><i class="ri-check-line"></i><span>Akun OSS</span></li>
+            Estimasi Waktu: 5–7 hari kerja <br>
+            Nilai Tamabah: Profesional,Legalitas Otentik, Dokumen Legalitas : Soft file and Hard File, Gratis Konsultasi Hukum 1 Tahun.
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-user-5-line"></i>Pendirian PT</div>
+          <h4>PAKET PROFESSIONAL</h4>
+          <div class="price"><span class="big">Rp6.000.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Basic</span></li>
+            <li><i class="ri-check-line"></i><span>NVirtual Office – Alamat resmi bergengsi di pusat Kota Bandung, fasilitas surat & meeting room tersedia selama 1 tahun.</span></li>
+            <li><i class="ri-check-line"></i><span>Stempel Perusahaan – Siap transaksi & tanda tangan resmi.</span></li>
+            <li><i class="ri-check-line"></i><span>Branding Kit Lengkap: Logo + Kartu Nama + Kop Surat Digital</span></li>
+            <li><i class="ri-check-line"></i><span>Konsultasi Strategi Bisnis & Digital Presence – Tips supaya usaha bisa langsung dipromosikan online.</span></li>
+            <li><i class="ri-check-line"></i><span>Bonus: Mini Workshop Online Pendirian PT – Cara legal & efisien kelola PT baru.</span></li>
+            Estimasi Waktu: 5–7 hari kerja <br>
+            Nilai Tambah: PT siap branding, punya kantor virtual premium, dan bisa “promosi” secara digital dari hari pertama.
+          </ul><br>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian PT </div>
+          <h4>PAKET PREMIUM</h4>
+          <div class="price"><span class="big">Rp9.500.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Professional</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian CV / Firma </div>
+          <h4>PAKET BASIC</h4>
+          <div class="price"><span class="big">Rp2.300.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Konsultasi Ide & Struktur CV – Biar modal & usaha langsung sesuai rencana.</span></li>
+            <li><i class="ri-check-line"></i><span>Cek Nama CV & Branding Awal – Nama unik dan gampang diingat.</span></li>
+            <li><i class="ri-check-line"></i><span>Pembuatan Akta Pendirian & SK Kemenkumham – Langsung sah.</span></li>
+            <li><i class="ri-check-line"></i><span>Template Dokumen Legal Siap Pakai – Surat Kuasa, MoU, kontrak sederhana.</span></li>
+            <li><i class="ri-check-line"></i><span>Tips Branding & Logo Perusahaan – Biar CV terlihat profesional.</span></li>
+            <li><i class="ri-check-line"></i><span>NPWP, SKT, & NIB Lengkap – Tidak perlu repot urus pajak & izin usaha.</span></li>
+            Estimasi Waktu: 2–3 hari kerja <br>
+            Nilai Tamabah: Profesional,Legalitas Otentik, Dokumen Legalitas : Soft file and Hard File, Gratis Konsultasi Hukum 1 Tahun.
+          </ul>
+        </article>
+                <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian CV / Figma </div>
+          <h4>PAKET PROFESSIONAL</h4>
+          <div class="price"><span class="big">Rp4.000.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Basic</span></li>
+            <li><i class="ri-check-line"></i><span>Virtual Office Sederhana – Alamat resmi bergengsi di Kota Bandung, fasilitas surat & meeting room tersedia selama 1 tahun.</span></li>
+            <li><i class="ri-check-line"></i><span>Stempel Perusahaan – Siap transaksi & tanda tangan resmi.</span></li>
+            <li><i class="ri-check-line"></i><span>Branding Kit Lengkap: Logo + Kartu Nama + Kop Surat Digital</span></li>
+            <li><i class="ri-check-line"></i><span>Konsultasi Strategi Bisnis & Digital Presence – Tips supaya usaha bisa langsung dipromosikan online.</span></li>
+            <li><i class="ri-check-line"></i><span>Bonus: Mini Workshop Online Pendirian CV – Cara legal & efisien kelola CV baru.</span></li>
+            Estimasi Waktu: 2–3 hari kerja <br>
+            Nilai Tambah: CV siap branding, punya kantor virtual premium, dan bisa “promosi” secara digital dari hari pertama.
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian CV / Firma </div>
+          <h4>PAKET PREMIUM</h4>
+          <div class="price"><span class="big">Rp6.500.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Professional</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian Yayasan </div>
+          <h4>PAKET BASIC</h4>
+          <div class="price"><span class="big">Rp5.000.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Cek & Pemesanan Nama Yayasan – Pastikan nama unik dan bisa didaftarkan di Kemenkumham.</span></li>
+            <li><i class="ri-check-line"></i><span>Pembuatan Akta Notaris – Dokumen legal resmi untuk pendirian yayasan.</span></li>
+            <li><i class="ri-check-line"></i><span>SK Pengesahan Kemenkumham – Yayasan sah secara hukum</span></li>
+            <li><i class="ri-check-line"></i><span>NPWP Yayasan – Untuk keperluan pajak dan administrasi resmi</span></li>
+            <li><i class="ri-check-line"></i><span>Template Dokumen Yayasan – Contoh surat kuasa, MoU, dan dokumen internal yayasan</span></li>
+            <li><i class="ri-check-line"></i><span>Konsultasi Legal & Struktur Yayasan – Tips struktur pengurus dan pembagian tanggung jawab.</span></li>
+            <li><i class="ri-check-line"></i><span>SKT Pajak & OSS – Yayasan siap secara administrasi dan operasional.</span></li>
+            Estimasi Waktu: 4–5 hari kerja <br>
+            Nilai Tambah: Yayasan siap berjalan dengan legalitas resmi, dokumen siap pakai, dan konsultasi untuk pengelolaan awal yayasan.
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian Yayasan </div>
+          <h4>PAKET PROFESSIONAL</h4>
+          <div class="price"><span class="big">Rp7.500.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Basic.</span></li>
+            <li><i class="ri-check-line"></i><span>Virtual Office Bandung – Alamat resmi untuk surat-menyurat, meeting room, dan resepsionis.</span></li>
+            <li><i class="ri-check-line"></i><span>Stempel & Logo Yayasan – Biar yayasan terlihat profesional sejak awal.</span></li>
+            <li><i class="ri-check-line"></i><span>Email Perusahaan & Akun OSS</span></li>
+            <li><i class="ri-check-line"></i><span>Konsultasi Strategi Yayasan – Tips pengelolaan dana, fundraising, dan publikasi.</span></li>
+            <li><i class="ri-check-line"></i><span>Bonus: Mini workshop online pengelolaan yayasan selama 1 sesi</span></li>
+            Estimasi Waktu: 3–4 hari kerja <br>
+            Nilai Tambah: Yayasan langsung terlihat profesional, punya alamat resmi, dan siap operasional dengan dokumen lengkap.
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian Yayasan </div>
+          <h4>PAKET PREMIUM</h4>
+          <div class="price"><span class="big">Rp10.500.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Professional</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian PT Perorangan </div>
+          <h4>PAKET BASIC</h4>
+          <div class="price"><span class="big">Rp600.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Surat Pernyataan Pendirian PT dari Kemenkumham RI.</span></li>
+            <li><i class="ri-check-line"></i><span>Sertifikat Pendaftaran.</span></li>
+            <li><i class="ri-check-line"></i><span>NPWP Pribadi dan Perusahaan.</span></li>
+            <li><i class="ri-check-line"></i><span>NIB, Sertifikat Standar, Tata Ruang, SPPL.</span></li>
+            <li><i class="ri-check-line"></i><span>Email Perusahaan.</span></li>
+            <li><i class="ri-check-line"></i><span>Konsultasi Usaha dan KBLI.</span></li>
+            <li><i class="ri-check-line"></i><span>Logo dan Cap Perusahaan .</span></li>
+            <li><i class="ri-check-line"></i><span>Kop Surat dan Kartu Nama Perusahaan.</span></li>
+            <li><i class="ri-check-line"></i><span>Aktivasi Akun AHU dann OSS.</span></li>
+            Estimasi Waktu: 2–3 hari kerja <br>
+            Nilai Tambah: Proses dapat dilakukan sepenuhnya secara online.
+          </ul>
+        </article>
+                <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian PT Perorangan </div>
+          <h4>PAKET PROFESSIONAL TANPA VIRTUAL OFFICE</h4>
+          <div class="price"><span class="big">Rp700.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Basic</span></li>
+            <li><i class="ri-check-line"></i><span>Email Perusahaan & Akun  OSS</span></li>
+            <li><i class="ri-check-line"></i><span>Sertifikat Standar – Sertifikat untuk usaha dengan risiko rendah.</span></li>
+            <li><i class="ri-check-line"></i><span>Stempel Perusahaan – Untuk keperluan administrasi resmi.</span></li>
+            <li><i class="ri-check-line"></i><span>Kartu Nama Direktur – Identitas profesional untuk direktur perusahaan.</span></li>
+            <li><i class="ri-check-line"></i><span>Bonus: Konsultasi merek, akun OSS, dan pembuatan rekening bank perusahaan.</span></li>
+            Estimasi Waktu: 3–4 hari kerja <br>
+            Nilai Tambah: Proses dapat dilakukan sepenuhnya secara online
+          </ul>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="ri-hand-heart-line"></i>Pendirian PT Perorangan </div>
+          <h4>PAKET PROFESSIONAL + VIRTUAL OFFICE</h4>
+          <div class="price"><span class="big">Rp900.000</span></div>
+          <ul class="list" style="margin:.8rem 0 1rem">
+            <li><i class="ri-check-line"></i><span>Semua layanan Paket Basic</span></li>
+            <li><i class="ri-check-line"></i><span>Email Perusahaan & Akun  OSS</span></li>
+            <li><i class="ri-check-line"></i><span>Sertifikat Standar – Sertifikat untuk usaha dengan risiko rendah.</span></li>
+            <li><i class="ri-check-line"></i><span>Virtual Office 1 Tahun – Alamat bisnis resmi dengan layanan resepsionis dan meeting room.</span></li>
+            <li><i class="ri-check-line"></i><span>Stempel Perusahaan – Untuk keperluan administrasi resmi.</span></li>
+            <li><i class="ri-check-line"></i><span>Kartu Nama Direktur – Identitas profesional untuk direktur perusahaan.</span></li>
+            <li><i class="ri-check-line"></i><span>Bonus: Konsultasi merek, akun OSS, dan pembuatan rekening bank perusahaan.</span></li>
+            Estimasi Waktu: 3–4 hari kerja <br>
+            Nilai Tambah: Proses dapat dilakukan sepenuhnya secara online
+          </ul>
+        </article>
+      </div>
+      <p class="muted" style="margin-top:1rem">Ingin paket lain (misal CV, upgrade KBLI, izin sektoral)? <a href="#kontak" style="text-decoration:underline">Hubungi kami</a> untuk penawaran khusus.</p>
+    </div>
+  </section>
+
+  <!-- PROSES -->
+  <section id="proses">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Alur Proses</h2>
+        <span class="muted">Simple, jelas, terukur.</span>
+      </div>
+      <div class="steps">
+        <div class="step card">
+          <i class="ri-chat-1-line"></i>
+          <div>
+            <h4>1) Konsultasi & Cek Kebutuhan</h4>
+            <p class="muted">Tentukan bentuk badan usaha & KBLI. Kami bantu memilih yang paling pas.</p>
+          </div>
+        </div>
+        <div class="step card">
+          <i class="ri-file-edit-line"></i>
+          <div>
+            <h4>2) Pengumpulan Data</h4>
+            <p class="muted">KTP, NPWP, domisili, struktur kepemilikan, modal dasar/tersetor, dll.</p>
+          </div>
+        </div>
+        <div class="step card">
+          <i class="ri-building-3-line"></i>
+          <div>
+            <h4>3) Akta & Pengesahan</h4>
+            <p class="muted">Notaris menyusun akta, lalu pengesahan di Kemenkumham.</p>
+          </div>
+        </div>
+        <div class="step card">
+          <i class="ri-shield-user-line"></i>
+          <div>
+            <h4>4) NIB, OSS & NPWP</h4>
+            <p class="muted">Terbit NIB-OSS, KBLI aktif, dan NPWP perusahaan.</p>
+          </div>
+        </div>
+        <div class="step card">
+          <i class="ri-rocket-line"></i>
+          <div>
+            <h4>5) Dokumen Selesai</h4>
+            <p class="muted">Dokumen digital & fisik siap dipakai operasional/kerja sama.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section id="testi">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Kata Klien</h2>
+        <span class="muted">Sebagian review singkat.</span>
+      </div>
+      <div class="grid cols-3">
+        <article class="card">
+          <p>“Prosesnya rapi dan dikasih update terus. 10/10 bakal rekomendasiin.”</p>
+          <div class="muted">— Raka, Bandung</div>
+        </article>
+        <article class="card">
+          <p>“Harga jelas, nggak ada biaya tersembunyi. NIB sama NPWP beres cepat.”</p>
+          <div class="muted">— Siti, Jakarta</div>
+        </article>
+        <article class="card">
+          <p>“Timnya responsif, bantu pilih KBLI yang sesuai rencana bisnis.”</p>
+          <div class="muted">— Kevin, Surabaya</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">FAQ</h2>
+        <span class="muted">Pertanyaan yang sering ditanyakan</span>
+      </div>
+      <div class="grid cols-2">
+        <details>
+          <summary>Berapa lama proses pendirian PT?</summary>
+          <p class="muted">Umumnya 5–14 hari kerja tergantung kelengkapan data dan antrian instansi.</p>
+        </details>
+        <details>
+          <summary>Apakah alamat virtual office boleh?</summary>
+          <p class="muted">Tergantung kebijakan daerah & zonasi. Kami bisa bantu cek.</p>
+        </details>
+        <details>
+          <summary>Apa itu KBLI?</summary>
+          <p class="muted">Klasifikasi Baku Lapangan Usaha Indonesia — kode kegiatan usaha yang dicantumkan di NIB.</p>
+        </details>
+        <details>
+          <summary>Ada biaya lain-lain?</summary>
+          <p class="muted">Harga transparan. Jika ada kebutuhan tambahan (izin sektoral, VO, dll) akan diinformasikan di awal.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Butuh Bantuan Sekarang?</h2>
+        <span class="muted">Isi form singkat ini. Kami akan hubungi via WhatsApp.</span>
+      </div>
+      <div class="grid cols-2">
+        <form class="card" onsubmit="return sendWA(event)">
+          <label>Nama<br><input required name="nama" class="inp" placeholder="Nama lengkap" /></label>
+          <label>WhatsApp<br><input required name="wa" class="inp" placeholder="08xxxxxxxxxx" /></label>
+          <label>Kebutuhan<br>
+            <select name="jenis" class="inp">
+              <option>PT</option>
+              <option>PT Perorangan</option>
+              <option>CV</option>
+              <option>Yayasan</option>
+              <option>Perizinan Sektoral</option>
+              <option>Konsultasi</option>
+            </select>
+          </label>
+          <label>Catatan<br><textarea name="catatan" class="inp" rows="4" placeholder="Ceritakan singkat kebutuhanmu"></textarea></label>
+          <button class="btn" type="submit"><i class="ri-send-plane-2-line"></i>Kirim via WhatsApp</button>
+        </form>
+        <div class="card">
+          <h4>Kontak Cepat</h4>
+          <p class="muted">Admin tersedia 09.00–21.00 WIB</p>
+          <ul class="list">
+            <li><i class="ri-whatsapp-line"></i><span>WhatsApp: <b id="waDisplay">+62 895-0521-8343</b></span></li>
+            <li><i class="ri-mail-line"></i><span>Email: wendinew2005@gmail.com</span></li>
+            <li><i class="ri-map-pin-line"></i><span>Bandung, Indonesia</span></li>
+          </ul>
+          <div class="badges" style="margin-top:1rem">
+            <span class="badge"><i class="ri-secure-payment-line"></i>Pembayaran aman</span>
+            <span class="badge"><i class="ri-file-check-line"></i>Dokumen resmi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a class="wa" id="waBtn" href="https://wa.me/6289505218343" target="_blank" aria-label="WhatsApp">
+    <i class="ri-whatsapp-line" style="font-size:1.6rem"></i>
+  </a>
+
+  <footer class="container" style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div>© <span id="yr"></span> LegalPro — Jasa Legalitas Usaha</div>
+  </footer>
+
+  <style>
+    /* input style */
+    .inp{width:100%;margin:.35rem 0 1rem;padding:.8rem;border-radius:12px;border:1px solid rgba(148,163,184,.28);background:rgba(10,16,28,.6);color:var(--text)}
+    .inp:focus{outline:2px solid rgba(14,165,233,.6);border-color:transparent}
+  </style>
+
+  <script>
+    // Nav toggle mobile
+    const hamb=document.getElementById('hamb');
+    const menu=document.getElementById('menu');
+    hamb?.addEventListener('click',()=>menu.classList.toggle('show'));
+
+    // Tahun footer
+    document.getElementById('yr').textContent=new Date().getFullYear();
+
+    // Ganti nomor WA sekali di sini
+    const WHATSAPP_NUMBER = '6289505218343'; 
+    const waBtn = document.getElementById('waBtn');
+    const waDisplay = document.getElementById('waDisplay');
+    waBtn.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+    waDisplay.textContent = `+${WHATSAPP_NUMBER}`;
+
+    // Kirim form ke WA
+    function sendWA(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const nama = data.get('nama');
+      const wa   = (data.get('wa')||'').replace(/\D/g,'');
+      const jenis= data.get('jenis');
+      const cat  = data.get('catatan')||'';
+      const msg = encodeURIComponent(
+        `Halo Admin, saya ${nama}.\n`+
+        `Kebutuhan: ${jenis}.\n`+
+        (cat?`Catatan: ${cat}\n`:``)+
+        `Nomor saya: ${wa}`
+      );
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+      return false;
+    }
+    window.sendWA = sendWA;
+  </script>
+</body>
+</html>
