@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta name="google-site-verification" content="d0xwZ-sl1_IJCg5UqnhaeV70j2bjN6SIwuiCccnJraE" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jasa Legalitas Usaha — PT, PT Perorangan, CV, Yayasan</title>
@@ -135,7 +134,7 @@
   <!-- NAVBAR -->
   <nav class="nav">
     <div class="container nav-wrap">
-      <a href="#" class="brand"><i class="ri-shield-check-line"></i><span>LegalPro</span></a>
+      <a href="#" class="brand"><i class="ri-shield-check-line"></i><span>Ez Pro Legal</span></a>
       <button class="hamb btn outline" id="hamb"><i class="ri-menu-line"></i></button>
       <div class="menu" id="menu">
         <a href="#layanan">Layanan</a>
@@ -467,11 +466,11 @@
         </article>
         <article class="card">
           <p>“Harga jelas, nggak ada biaya tersembunyi. NIB sama NPWP beres cepat.”</p>
-          <div class="muted">— Siti, Jakarta</div>
+          <div class="muted">— Siti, Bandung</div>
         </article>
         <article class="card">
           <p>“Timnya responsif, bantu pilih KBLI yang sesuai rencana bisnis.”</p>
-          <div class="muted">— Kevin, Surabaya</div>
+          <div class="muted">— Kevin, Bandung</div>
         </article>
       </div>
     </div>
@@ -534,7 +533,7 @@
           <p class="muted">Admin tersedia 09.00–21.00 WIB</p>
           <ul class="list">
             <li><i class="ri-whatsapp-line"></i><span>WhatsApp: <b id="waDisplay">+62 895-0521-8343</b></span></li>
-            <li><i class="ri-mail-line"></i><span>Email: wendinew2005@gmail.com</span></li>
+            <li><i class="ri-mail-line"></i><span>Email: ezprolegal@gmail.com</span></li>
             <li><i class="ri-map-pin-line"></i><span>Bandung, Indonesia</span></li>
           </ul>
           <div class="badges" style="margin-top:1rem">
@@ -551,8 +550,27 @@
   </a>
 
   <footer class="container" style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-    <div>© <span id="yr"></span> LegalPro — Jasa Legalitas Usaha</div>
+    <div>© <span id="yr"></span> Ez Pro Legal — Jasa Legalitas Usaha</div>
   </footer>
+
+  <script>
+    // Cek apakah halaman dibuka di dalam iframe
+    if (window.self !== window.top) {
+      document.body.style.margin = "0";
+      document.documentElement.style.background = "transparent";
+    }
+
+    // Widget loader - kalau halaman ini dipanggil lewat <script src="...">
+    if (document.currentScript && document.currentScript.getAttribute("data-widget") === "true") {
+      var iframe = document.createElement("iframe");
+      iframe.src = window.location.href;
+      iframe.style.width = "100%";
+      iframe.style.height = "100vh";
+      iframe.style.border = "none";
+      document.body.innerHTML = "";
+      document.body.appendChild(iframe);
+    }
+  </script>
 
   <style>
     /* input style */
@@ -598,4 +616,3 @@
   </script>
 </body>
 </html>
-
